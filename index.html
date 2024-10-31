@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tip Calculator</h2>
+        <input type="number" id="billAmount" placeholder="Enter bill amount" />
+        <input type="number" id="tipPercent" placeholder="Enter tip percentage" />
+        <button onclick="calculateTip()">Calculate</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateTip() {
+            const billAmount = parseFloat(document.getElementById("billAmount").value);
+            const tipPercent = parseFloat(document.getElementById("tipPercent").value);
+
+            if (isNaN(billAmount) || isNaN(tipPercent)) {
+                document.getElementById("result").textContent = "Please enter valid numbers.";
+                return;
+            }
+
+            const tip = (billAmount * tipPercent) / 100;
+            const total = billAmount + tip;
+            document.getElementById("result").textContent = `Tip: $${tip.toFixed(2)}, Total: $${total.toFixed(2)}`;
+        }
+
+        // Инициализация Web Apps API
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
